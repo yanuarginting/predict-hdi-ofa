@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Judul Halaman -->
+	<title>Alpha Zero One</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- Icon -->
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}">
+	
+	<!-- CSS -->
+	<link rel="stylesheet" href={{ url_for('static', filename='/css/bootstrap.min.css') }} type="text/css">
+	<link rel="stylesheet" href={{ url_for('static', filename='/css/client_side.css') }}  type="text/css">
+	
+	<!-- JavaScript -->
+	<script src={{ url_for('static', filename='/js/jquery_3.6.0.min.js') }} ></script>
+	<script src={{ url_for('static', filename='/js/bootstrap_3.4.1.min.js') }} ></script>
+</head>
+
+<body id="halamanku" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+	<!-- Navigation Bar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			
+			<!-- Logo -->
+			<div class="navbar-header">
+				<img src={{ url_for('static', filename='/images/logo.png') }} alt="Alpha Zero One Logo" 
+				width="50" height="50" align="left">
+				<a class="navbar-brand" href="#halamanku">&#160; Alpha Zero One</a>
+			</div>
+			
+			<!-- Daftar Halaman -->
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#informasi">Informasi</a></li>
+					<li><a href="#aplikasi">Aplikasi</a></li>
+					<li><a href="#anggotaKelompok">Anggota Kelompok</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Bagian Halaman (Informasi) -->
+	<div id="informasi" class="container-fluid">
+		<br>
+		<br>
+		<br>
+		<div class="row">
+			<div class="col-sm-6">
+				<!-- Deskripsi Aplikasi -->
+				<h2>HDIC</h2>
+				<h4>Human Development Index Classifier</h4><br>
+				<p style="text-align: justify;text-justify: inter-word;">
+					Aplikasi ini dibuat untuk mengukur perbandingan dari harapan lama sekolah, 
+					pengeluaran perkapita, rerata lama sekolah, dan usia harapan hidup. 
+					HDIC digunakan untuk menentukan peringkat atau level pembangunan suatu wilayah. 
+					HDIC juga dapat digunakan untuk menentukan apakah layak suatu wilayah tersebut dibenahi SDM-nya atau tidak.
+				</p>
+				<br>
+
+				<!-- Tombol Mulai -->
+				<nav id="navgo" class="navbar" style="background-color:#ffffff;z-index: 0;">
+					<ul class="nav nav-pills">
+						<li class="nav-item">
+							<a class="btn btn btn-lg" href="#aplikasi" style="background-color:#fdb946">Mulai</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			
+			<div class="col-sm-6">
+				<!-- Gambar Deskripsi Aplikasi -->
+				<img src={{ url_for('static', filename='/images/display.jpg') }} width="500"></img>
+			</div>
+		</div>
+		<br>
+	</div>
+	
+
+	<!-- Bagian Halaman (Aplikasi) -->
+	<div id="aplikasi" data-bs-spy="scroll" data-bs-target="#navgo" data-bs-offset="0" class="scrollspy-example" tabindex="0">
+		<br>
+		<br>
+		<div class="row">
+			<div class="col-sm-6">
+				</br>
+				<!-- Input Nilai Pengukuran dari Pengguna -->
+				<h3 style="margin-left: 50px;">Nilai Pengukuran </h3>
+				<form>
+					<div class="form-group" style="margin-left: 50px;">
+						<!-- Input Slider untuk Nilai Pengukuran Bunga Iris -->
+						<label for="range_harapan_lama_sekolah">Harapan Lama Sekolah (thn) </label>&nbsp;&rarr;&nbsp;
+						<span id="rangeVal_harapan_lama_sekolah">10<!-- Default value --></span>
+						<input type="range" min="2" max="17" step="1" value="10" class="slider" id="range_harapan_lama_sekolah" 
+						onInput="$('#rangeVal_harapan_lama_sekolah').html($(this).val())">
+						</br>
+						<label for="range_pengeluaran_perkapita">Pengeluaran Perkapita (jt) </label>&nbsp;&rarr;&nbsp;
+						<span id="rangeVal_pengeluaran_perkapita">14<!-- Default value --></span>
+						<input type="range" min="3" max="23" step="1" value="14" class="slider" id="range_pengeluaran_perkapita" 
+						onInput="$('#rangeVal_pengeluaran_perkapita').html($(this).val())">
+						</br>
+						<label for="range_rerata_lama_sekolah">Rerata Lama Sekolah (thn) </label>&nbsp;&rarr;&nbsp;
+						<span id="rangeVal_rerata_lama_sekolah">7<!-- Default value --></span>
+						<input type="range" min="1" max="12" step="1" value="7" class="slider" id="range_rerata_lama_sekolah" 
+						onInput="$('#rangeVal_rerata_lama_sekolah').html($(this).val())">
+						</br>
+						<label for="range_usia_harapan_hidup">Usia Harapan Hidup (thn) </label>&nbsp;&rarr;&nbsp;
+						<span id="rangeVal_usia_harapan_hidup">67<!-- Default value --></span>
+						<input type="range" min="54" max="77" step="1" value="67" class="slider" id="range_usia_harapan_hidup" 
+						onInput="$('#rangeVal_usia_harapan_hidup').html($(this).val())">
+						</br>
+						<!-- Tombol Prediksi -->
+						<button type="submit" id="prediksi_submit" class="btn btn btn-lg">Prediksi</button>
+					</div>
+				</form>
+			</div>
+			<div class="col-sm-6">
+				<br>
+				<!-- Bagian Halaman untuk Hasil Prediksi -->
+				<div id="hasil_prediksi" align="center">
+				<!-- Hasil Prediksi akan ditampilkan di sini-->
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+	</div>
+
+	<!-- Bagian Halaman (Anggota Kelompok) -->
+	<div id="anggotaKelompok" class="container-fluid text-center">
+		<br>
+		<h2>ANGGOTA KELOMPOK</h2>
+		<h4>Tim Data Science dan Tim Deployment</h4>
+		<br>
+		<div class="row slideanim">
+			<div class="col-sm-6">
+				<span class="glyphicon glyphicon-user logo-small"></span>
+				<h4>Dina Amelia Alzahra</h4>
+				<p>Universitas Singaperbangsa Karawang</p>
+			</div>
+			<div class="col-sm-6">
+				<span class="glyphicon glyphicon-user logo-small"></span>
+				<h4>Dwinda Putri Nuria</h4>
+				<p>Universitas Singaperbangsa Karawang</p>
+			</div>
+		</div>
+	    <br>
+	    <div class="row slideanim">
+			<div class="col-sm-6">
+				<span class="glyphicon glyphicon-user logo-small"></span>
+				<h4>Sabar Rendy Samuel Silalahi</h4>
+				<p>Universitas Singaperbangsa Karawang</p>
+			</div>
+			<div class="col-sm-6">
+				<span class="glyphicon glyphicon-user logo-small"></span>
+				<h4>Yanuar Ginting</h4>
+				<p>Universitas Bhayangkara Jakarta Raya</p>
+			</div>
+	    </div>
+	</div>
+
+	<!-- Footer -->
+	<footer class="container-fluid text-center">
+		<a href="#halamanku" title="To Top">
+			<span class="glyphicon glyphicon-chevron-up"></span>
+		</a>
+	</footer>
+
+	<!-- JavaScript untuk Animasi Scroll dan Prediksi Model -->
+	<script  src={{ url_for('static', filename='/js/client_side.js') }}></script>
+
+</body>
+</html>
